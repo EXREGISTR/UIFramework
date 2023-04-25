@@ -20,20 +20,25 @@ namespace UIFramevork {
 		
 		public void BindHandler(IViewHandler handler) {
 			if (handler is not TViewHandler castedHandler) {
-				throw new InvalidCastException();
+				throw new InvalidCastException($"Handler {handler} is not type {typeof(TViewHandler).FullName}!");
 			}
 
 			if (this.handler != null) {
-				if (ReferenceEquals(this.handler, handler)) return;
+				if (ReferenceEquals(this.handler, handler)) {
+					Debug.LogWarning($"You try to set similar handler {handler} for screen {ToString()}", this);
+					return;
+				}
+				
 				this.handler.Dispose(); 
-				Dispose();
+				OnUnbindHandler();
 			}
 			
 			this.handler = castedHandler;
 			OnHandlerBinded();
 		}
-
+		
 		protected virtual void OnHandlerBinded() { }
+		protected virtual void OnUnbindHandler() { }
 		public virtual void Dispose() { }
 	}
 }

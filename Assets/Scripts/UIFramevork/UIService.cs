@@ -61,7 +61,7 @@ namespace UIFramevork {
 		public void BindHandler<THandler>(THandler handler) where THandler : IPersistentViewHandler {
 			var key = typeof(THandler);
 			if (!screensMap.TryGetValue(key, out var screen)) {
-				Debug.LogError($"No shown screen for handler {key.FullName}!");
+				Debug.LogError($"No screen for handler {key.FullName}!");
 				return;
 			}
 			

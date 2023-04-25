@@ -16,11 +16,7 @@ namespace Example {
 			changeNameButton.onClick.AddListener(handler.StartSetupName);
 		}
 
-		public override void Dispose() {
-			playButton.onClick.RemoveAllListeners();
-			addMoneyButton.onClick.RemoveAllListeners();
-			changeNameButton.onClick.RemoveAllListeners();
-		}
+		protected override void OnUnbindHandler() => Dispose();
 
 		public void UpdateMoneyAmount(int value) {
 			moneyAmountText.text = $"Money: {value}";
@@ -28,6 +24,12 @@ namespace Example {
 
 		public void ChangeNameVisibility(bool value) {
 			changeNameButton.gameObject.SetActive(value);
+		}
+
+		public override void Dispose() {
+			playButton.onClick.RemoveAllListeners();
+			addMoneyButton.onClick.RemoveAllListeners();
+			changeNameButton.onClick.RemoveAllListeners();
 		}
 	}
 }

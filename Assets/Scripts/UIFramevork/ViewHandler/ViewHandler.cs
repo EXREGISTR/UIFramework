@@ -10,12 +10,12 @@ namespace UIFramevork {
 	
 		public void BindScreen(IScreen screen) {
 			if (screen is not TScreen castedScreen) {
-				throw new InvalidCastException();
+				throw new InvalidCastException($"Screen {screen} is not type {typeof(TScreen).FullName}!");
 			}
 
 			if (this.screen != null) {
 				if (ReferenceEquals(this.screen, screen)) {
-					Debug.LogWarning("");
+					Debug.LogWarning($"You try to set similar screen {screen} for handler {ToString()}");
 					return;
 				}
 				
