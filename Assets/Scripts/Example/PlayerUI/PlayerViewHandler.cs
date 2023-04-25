@@ -8,13 +8,11 @@ namespace Example {
 
 		public override void OnShow() {
 			screen.UpdateMoneyAmount(user.Money);
-			if (user.Name != null) {
-				screen.ChangeNameVisibility(false);
-			}
+			screen.ChangeNameVisibility(string.IsNullOrWhiteSpace(user.Name));
 		}
 
 		public void Play() {
-			var message = user.Name == null ? "Эу чувак, ноунеймов не принимаем!" : "а игры то нет, ухадите";
+			var message = string.IsNullOrWhiteSpace(user.Name) ? "Эу чувак, ноунеймов не принимаем!" : "а игры то нет, ухадите";
 			uiService.Show(new DialogViewHandler(message));
 		}
 		

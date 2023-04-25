@@ -11,8 +11,8 @@ namespace UIFramevork {
 			
 			Initialize(service);
 		}
-
-		private void OnDestroy() => service.Dispose();
+		
+		private void OnDisable() => service.Dispose();
 		
 		protected abstract void Initialize(IUIService service);
 	}

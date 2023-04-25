@@ -3,25 +3,43 @@
 namespace Example {
 	public class UserData {
 		private static UserData instance;
-		
-		public string Name { get; set; }
-		public int Money { get; set; }
+
+		private string name;
+		public string Name {
+			get => name;
+			set {
+				name = value;
+				SaveName();
+			}
+		}
+
+		private int money;
+		public int Money { 
+			get => money;
+			set {
+				money = value;
+				SaveMoney();
+			}
+		}
 
 		private UserData() { }
 
 		// here can be load from database/json
 		public static UserData Get() {
 			instance ??= new UserData {
-				Name = PlayerPrefs.GetString(nameof(Name)),
-				Money = PlayerPrefs.GetInt(nameof(Money))
+				name = PlayerPrefs.GetString(nameof(name), null),
+				money = PlayerPrefs.GetInt(nameof(money), 0)
 			};
 
 			return instance;
 		}
+		
+		private void SaveName() {
+			PlayerPrefs.SetString(nameof(name), name);
+		}
 
-		public void Save() {
-			PlayerPrefs.SetString(nameof(Name), Name);
-			PlayerPrefs.SetInt(nameof(Money), Money);
+		private void SaveMoney() {
+			PlayerPrefs.SetInt(nameof(money), money);
 		}
 	}
 }
