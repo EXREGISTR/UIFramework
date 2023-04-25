@@ -11,9 +11,9 @@ namespace Example {
 		[SerializeField] private TMP_Text moneyAmountText;
 		
 		protected override void OnHandlerBinded() {
-			playButton.onClick.AddListener(handler.OnPlayClicked);
-			addMoneyButton.onClick.AddListener(handler.OnAddMoneyClicked);
-			changeNameButton.onClick.AddListener(handler.OnSetupNameClicked);
+			playButton.onClick.AddListener(handler.Play);
+			addMoneyButton.onClick.AddListener(handler.AddMoney);
+			changeNameButton.onClick.AddListener(handler.StartSetupName);
 		}
 
 		public override void Dispose() {

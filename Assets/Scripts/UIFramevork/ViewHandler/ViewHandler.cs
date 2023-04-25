@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace UIFramevork {
 	public abstract class ViewHandler<TScreen> : IViewHandler where TScreen : IScreen {
@@ -13,7 +14,10 @@ namespace UIFramevork {
 			}
 
 			if (this.screen != null) {
-				if (ReferenceEquals(this.screen, screen)) return;
+				if (ReferenceEquals(this.screen, screen)) {
+					Debug.LogWarning("");
+					return;
+				}
 				
 				this.screen.Dispose();
 				Dispose();

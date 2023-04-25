@@ -1,7 +1,7 @@
 ﻿using UIFramevork;
 
 namespace Example {
-	public class DialogViewHandler : ViewHandler<DialogScreen>, IOneShotViewHandler {
+	public class DialogViewHandler : ViewHandler<DialogScreen>, IOneTimeHandler {
 		private readonly string message;
 		
 		public DialogViewHandler(string message) {
@@ -12,7 +12,7 @@ namespace Example {
 			screen.SetMessage(message);
 		}
 
-		public void OnOkayClicked() {
+		public void Close() {
 			uiService.Close<DialogViewHandler>();
 		}
 	}

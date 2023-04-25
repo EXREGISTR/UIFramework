@@ -29,7 +29,7 @@ namespace UIFramevork {
 			shownScreens[key] = (screen, persistentViewHandlers[key]);
 		}
 
-		public void Show<THandler>(THandler handler) where THandler : IOneShotViewHandler {
+		public void Show<THandler>(THandler handler) where THandler : IOneTimeHandler {
 			var key = typeof(THandler);
 			if (!screensMap.TryGetValue(key, out var screen)) {
 				Debug.LogError($"No screen for handler {key.FullName}!");
@@ -52,7 +52,7 @@ namespace UIFramevork {
 			shown.screen.Close();
 			shownScreens.Remove(key);
 
-			if (shown.handler is IOneShotViewHandler) {
+			if (shown.handler is IOneTimeHandler) {
 				shown.screen.Dispose();
 				shown.handler.Dispose();
 			}

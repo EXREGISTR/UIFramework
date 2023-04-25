@@ -9,7 +9,7 @@ namespace Example {
 		[SerializeField] private TMP_Text messageText;
 
 		protected override void OnHandlerBinded() {
-			okayButton.onClick.AddListener(handler.OnOkayClicked);
+			okayButton.onClick.AddListener(handler.Close);
 		}
 
 		public override void Dispose() {
