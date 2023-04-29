@@ -28,7 +28,7 @@ namespace UIFramevork {
 			screen.Show();
 			shownScreens[key] = (screen, persistentViewHandlers[key]);
 		}
-
+		
 		public void Show<THandler>(THandler handler) where THandler : IOneTimeHandler {
 			var key = typeof(THandler);
 			if (!screensMap.TryGetValue(key, out var screen)) {
