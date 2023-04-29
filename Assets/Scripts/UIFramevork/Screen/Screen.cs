@@ -4,10 +4,8 @@ using UnityEngine;
 namespace UIFramevork {
 	public abstract class Screen<TViewHandler> : MonoBehaviour, IScreen where TViewHandler: IViewHandler {
 		public Type HandlerType { get; } = typeof(TViewHandler);
-		protected TViewHandler handler;
+		protected TViewHandler handler { get; private set; }
 		
-		protected virtual void OnDestroy() => Dispose();
-
 		public void Show() {
 			gameObject.SetActive(true);
 			handler.OnShow();
@@ -17,7 +15,7 @@ namespace UIFramevork {
 			handler.OnClose();
 			gameObject.SetActive(false);
 		}
-		
+
 		public void BindHandler(IViewHandler handler) {
 			if (handler is not TViewHandler castedHandler) {
 				throw new InvalidCastException($"Handler {handler} is not type {typeof(TViewHandler).FullName}!");
@@ -36,9 +34,11 @@ namespace UIFramevork {
 			this.handler = castedHandler;
 			OnHandlerBinded();
 		}
+
+		protected abstract void OnHandlerBinded();
+		protected abstract void OnUnbindHandler();
 		
-		protected virtual void OnHandlerBinded() { }
-		protected virtual void OnUnbindHandler() { }
-		public virtual void Dispose() { }
+		protected virtual void OnDestroy() => Dispose();
+		public virtual void Dispose() => OnUnbindHandler();
 	}
 }

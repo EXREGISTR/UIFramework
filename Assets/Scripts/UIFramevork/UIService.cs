@@ -72,7 +72,6 @@ namespace UIFramevork {
 		private void Bind(IScreen screen, IViewHandler handler) {
 			handler.InjectUIService(this);
 			screen.BindHandler(handler);
-			handler.BindScreen(screen);
 		}
 		
 		public void Dispose() {
