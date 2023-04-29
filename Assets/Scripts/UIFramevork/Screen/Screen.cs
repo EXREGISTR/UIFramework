@@ -11,7 +11,7 @@ namespace UIFramevork {
 			handler.OnShow();
 		}
 
-		public void Close() {
+		public void Hide() {
 			handler.OnClose();
 			gameObject.SetActive(false);
 		}

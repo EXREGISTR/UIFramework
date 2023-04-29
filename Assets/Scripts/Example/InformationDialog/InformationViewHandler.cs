@@ -1,7 +1,7 @@
 ﻿using UIFramevork;
 
 namespace Example {
-	public class InformationViewHandler : DialogViewHandler<InformationViewHandler> {
+	public class InformationViewHandler : ViewHandler, IOneTimeHandler {
 		public string Message { get; }
 		
 		public InformationViewHandler(string message) {

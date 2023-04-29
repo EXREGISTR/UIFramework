@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace UIFramevork {
-	public class ReactiveProperty<T> {
+	public class ReactiveProperty<T> where T: struct {
 		private T value;
 
 		public T Value {

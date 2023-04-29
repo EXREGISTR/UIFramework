@@ -13,12 +13,11 @@ namespace Example {
 		}
 
 		public void Play() {
-			if (string.IsNullOrWhiteSpace(PlayerData.Instance.Name)) {
+			if (!string.IsNullOrWhiteSpace(PlayerData.Instance.Name)) {
+				uiService.Show(new InformationViewHandler("No game ((999(("));
+			} else {
 				ShowRegistrationWindow();
-				return;
 			}
-			
-			uiService.Show(new InformationViewHandler("No game ((999(("));
 		}
 	}
 }

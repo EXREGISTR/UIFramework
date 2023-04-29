@@ -49,7 +49,7 @@ namespace UIFramevork {
 				return;
 			}
 			
-			shown.screen.Close();
+			shown.screen.Hide();
 			shownScreens.Remove(key);
 
 			if (shown.handler is IOneTimeHandler) {
