@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 namespace UIFramevork {
@@ -9,10 +10,12 @@ namespace UIFramevork {
 		public void Show() {
 			gameObject.SetActive(true);
 			handler.OnShow();
+			OnShow();
 		}
 
 		public void Hide() {
 			handler.OnClose();
+			OnHide();
 			gameObject.SetActive(false);
 		}
 
@@ -34,7 +37,10 @@ namespace UIFramevork {
 			this.handler = castedHandler;
 			OnHandlerBinded();
 		}
-
+		
+		protected virtual void OnShow() { }
+		protected virtual void OnHide() { }
+		
 		protected abstract void OnHandlerBinded();
 		protected abstract void OnUnbindHandler();
 		

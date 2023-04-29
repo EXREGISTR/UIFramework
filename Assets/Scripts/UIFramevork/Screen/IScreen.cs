@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace UIFramevork {
 	public interface IScreen : IDisposable {
@@ -6,6 +7,6 @@ namespace UIFramevork {
 		
 		public void Show();
 		public void Hide();
-		public void BindHandler(IViewHandler handler);
+		public void BindHandler([NotNull] IViewHandler handler);
 	}
 }
