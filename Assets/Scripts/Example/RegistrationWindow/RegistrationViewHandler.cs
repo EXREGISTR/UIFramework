@@ -25,7 +25,9 @@ namespace Example {
 			if (!State) return;
 
 			PlayerData.Instance.Name = enteredName;
-			uiService.Close<RegistrationViewHandler>();
+			Close();
 		}
+
+		public void Close() => uiService.Close<RegistrationViewHandler>();
 	}
 }

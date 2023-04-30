@@ -1,7 +1,10 @@
-﻿using UIFramevork;
+﻿using System.Threading;
+using UIFramevork;
 
 namespace Example {
 	public class MainMenuViewHandler : ViewHandler, IPersistentViewHandler {
+		private readonly CancellationTokenSource cts = new();
+		
 		public override void OnShow() {
 			if (string.IsNullOrWhiteSpace(PlayerData.Instance.Name)) {
 				ShowRegistrationWindow();
@@ -14,10 +17,12 @@ namespace Example {
 
 		public void Play() {
 			if (!string.IsNullOrWhiteSpace(PlayerData.Instance.Name)) {
-				uiService.Show(new InformationViewHandler("No game ((999(("));
+				uiService.ShowAsync(new InformationViewHandler("No game ((999(("), 3f, cts.Token);
 			} else {
 				ShowRegistrationWindow();
 			}
 		}
+
+		public override void Dispose() => cts.Cancel();
 	}
 }

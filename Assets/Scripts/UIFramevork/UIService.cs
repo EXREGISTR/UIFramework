@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace UIFramevork {
@@ -41,11 +43,23 @@ namespace UIFramevork {
 			shownScreens[key] = (screen, handler);
 		}
 		
-		public void Close<THandler>() where THandler : IViewHandler {
+		public async void ShowAsync<THandler>(THandler handler, float lifeTimeInSeconds, CancellationToken token) 
+			where THandler : IOneTimeHandler {
+			Show(handler);
+			try {
+				await Task.Delay(TimeSpan.FromSeconds(lifeTimeInSeconds), token);
+			} catch (OperationCanceledException) {
+				// ignored
+			} finally {
+				Close<THandler>(false);
+			}
+		}
+		
+		public void Close<THandler>(bool showWarning = true) where THandler : IViewHandler {
 			var key = typeof(THandler);
 
 			if (!shownScreens.TryGetValue(key, out var shown)) {
-				Debug.LogWarning($"No shown screen for handler {key.FullName}!");
+				if (showWarning) Debug.LogWarning($"No shown screen for handler {key.FullName}!");
 				return;
 			}
 			
