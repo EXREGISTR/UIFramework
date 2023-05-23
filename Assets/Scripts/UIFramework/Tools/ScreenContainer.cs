@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public class ScreenContainer : MonoBehaviour, IScreensContainer {
 		private IScreen[] screens;
 		

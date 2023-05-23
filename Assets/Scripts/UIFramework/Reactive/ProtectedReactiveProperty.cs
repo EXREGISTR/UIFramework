@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public class ProtectedReactiveProperty<T> where T: struct {
 		private readonly Guid password;
 		

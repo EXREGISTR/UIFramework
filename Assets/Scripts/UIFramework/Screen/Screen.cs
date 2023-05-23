@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public abstract class Screen<TViewHandler> : MonoBehaviour, IScreen where TViewHandler: IViewHandler {
 		public Type HandlerType { get; } = typeof(TViewHandler);
 		protected TViewHandler handler { get; private set; }

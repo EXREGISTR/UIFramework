@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using UIFramevork;
+using UIFramework;
 
 namespace Example {
 	public class RegistrationViewHandler : ViewHandler, IOneTimeHandler {

@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace UIFramevork {
-	public class ReactiveProperty<T> where T: struct {
+namespace UIFramework {
+	public class ReactiveProperty<T> {
 		private T value;
 
 		public T Value {

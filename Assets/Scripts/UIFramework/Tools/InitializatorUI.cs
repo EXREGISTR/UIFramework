@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public abstract class InitializatorUI : MonoBehaviour {
 		[SerializeField] private ScreenContainer container;
 

@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public abstract class ViewHandler : IViewHandler {
 		protected IUIService uiService;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public interface IScreen : IDisposable {
 		public Type HandlerType { get; }
 		

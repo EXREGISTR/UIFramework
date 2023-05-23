@@ -1,5 +1,5 @@
 ﻿using TMPro;
-using UIFramevork;
+using UIFramework;
 using UnityEngine;
 
 namespace Example {

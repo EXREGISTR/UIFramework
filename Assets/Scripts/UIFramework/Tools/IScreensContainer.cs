@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public interface IScreensContainer {
 		public IReadOnlyCollection<IScreen> GetScreens();
 	}

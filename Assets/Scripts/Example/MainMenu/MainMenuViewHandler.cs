@@ -1,5 +1,5 @@
 ﻿using System.Threading;
-using UIFramevork;
+using UIFramework;
 
 namespace Example {
 	public class MainMenuViewHandler : ViewHandler, IPersistentViewHandler {
@@ -17,7 +17,7 @@ namespace Example {
 
 		public void Play() {
 			if (!string.IsNullOrWhiteSpace(PlayerData.Instance.Name)) {
-				uiService.ShowAsync(new InformationViewHandler("No game ((999(("), 3f, cts.Token);
+				uiService.ShowAndCloseAsync(new InformationViewHandler("No game ((999(("), 3f, cts.Token);
 			} else {
 				ShowRegistrationWindow();
 			}

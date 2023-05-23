@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public sealed class UIService : IUIService {
 		private Dictionary<Type, IScreen> screensMap;
 		
@@ -26,7 +26,7 @@ namespace UIFramevork {
 				Debug.LogError($"No screen for handler {key.FullName}!");
 				return;
 			}
-			
+
 			screen.Show();
 			shownScreens[key] = (screen, persistentViewHandlers[key]);
 		}
@@ -43,21 +43,31 @@ namespace UIFramevork {
 			shownScreens[key] = (screen, handler);
 		}
 		
-		public async void ShowAsync<THandler>(THandler handler, float lifeTimeInSeconds, CancellationToken token) 
+		public async Task ShowAndCloseAsync<THandler>(THandler handler, float lifeTimeInSeconds, CancellationToken token, 
+			bool closeIfCancelledOperation = true)
 			where THandler : IOneTimeHandler {
 			Show(handler);
+			await CloseAsync<THandler>(lifeTimeInSeconds, token, closeIfCancelledOperation);
+		}
+
+		public async Task CloseAsync<THandler>(float closeDelay, CancellationToken token, 
+			bool closeIfCancelledOperation = true)
+			where THandler : IOneTimeHandler {
 			try {
-				await Task.Delay(TimeSpan.FromSeconds(lifeTimeInSeconds), token);
+				await Task.Delay(TimeSpan.FromSeconds(closeDelay), token);
 			} catch (OperationCanceledException) {
 				// ignored
 			} finally {
-				Close<THandler>(false);
+				if (closeIfCancelledOperation) Close<THandler>(false);
 			}
+			
+			await Task.Delay(TimeSpan.FromSeconds(closeDelay), token);
+			Close<THandler>(false);
 		}
-		
+
 		public void Close<THandler>(bool showWarning = true) where THandler : IViewHandler {
 			var key = typeof(THandler);
-
+			
 			if (!shownScreens.TryGetValue(key, out var shown)) {
 				if (showWarning) Debug.LogWarning($"No shown screen for handler {key.FullName}!");
 				return;

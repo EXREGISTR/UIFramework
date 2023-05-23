@@ -1,3 +1,3 @@
-﻿namespace UIFramevork {
+﻿namespace UIFramework {
 	public interface IPersistentViewHandler : IViewHandler { }
 }

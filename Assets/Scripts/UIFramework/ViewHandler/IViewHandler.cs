@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UIFramevork {
+namespace UIFramework {
 	public interface IViewHandler : IDisposable {
 		public void InjectUIService(IUIService uiService);
 		public void OnShow();

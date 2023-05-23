@@ -1,4 +1,4 @@
-﻿using UIFramevork;
+﻿using UIFramework;
 
 namespace Example {
 	public class GameUIInitializator : InitializatorUI {
